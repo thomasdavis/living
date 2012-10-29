@@ -16,6 +16,7 @@
         var categories = [];
         var ebook = [];
         var screencast = [];
+        var lol = [];
         $.ajax('http://mighty-shelf-9868.herokuapp.com/sales', {
             success: function (res) {
                 for(var i =0; i< res.rows.length; i++) {
@@ -29,6 +30,10 @@
                     }
                     if(row.type === 'ebook') {
                         ebook.push(row.sum);
+                    }
+
+                    if(row.type === 'undefined') {
+                        lol.push(row.sum);
                     }
                 }
                 console.log(categories,ebook,screencast)
@@ -89,6 +94,9 @@ chart = new Highcharts.Chart({
             }, {
                 name: 'screencast',
                 data: screencast
+            }, {
+                name: 'bugged',
+                data: lol
             }]
         });
 
